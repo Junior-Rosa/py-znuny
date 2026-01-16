@@ -1,0 +1,25 @@
+[project]
+name = "py-znuny"
+version = "0.1.0"
+description = "A Python client for interacting with the Znuny ticketing system API."
+authors = [
+    { name = "Junior Rosa", email = "jr.dasrosas@gmail.com" },
+    { name = "Pablo Gascon", email = "pablogasconiel445@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic>=2.12.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/Junior-Rosa/py-znuny"
+Repository = "https://github.com/Junior-Rosa/py-znuny"
+Issues = "https://github.com/Junior-Rosa/py-znuny/issues"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "ruff>=0.14.13",
+]
