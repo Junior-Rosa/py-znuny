@@ -28,3 +28,11 @@ dev = [
     "sphinx-autodoc-typehints>=3.6.2",
     "sphinx-rtd-theme>=3.1.0",
 ]
+
+[tool.ruff]
+line-length = 88
+target-version = "py314"
+select = ["E", "F", "I", "B"]
+
+[tool.ruff.format]
+quote-style = "double"

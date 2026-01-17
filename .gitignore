@@ -97,6 +97,8 @@ venv.bak/
 
 docs/generated
 
+.ruff_cache
+
 # IDE
 .vscode/
 .idea/
