@@ -95,6 +95,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+docs/generated
+
 # IDE
 .vscode/
 .idea/
