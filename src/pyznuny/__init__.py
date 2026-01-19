@@ -1,3 +1,3 @@
-from .ticket.endpoints import Endpoint, EndpointsRegistry
+# from .ticket.client import TicketClient
 
-__all__ = ["Endpoint", "EndpointsRegistry"]
+# __all__ = ["TicketClient"]

@@ -1,54 +1,65 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Iterable, Mapping, MutableMapping
 
-_VALID_METHODS = {
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "HEAD",
-    "OPTIONS",
+from .models import Endpoint
+from typing import Iterable, Mapping, MutableMapping, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pyznuny.ticket.client import TicketClient
+
+_DEFAULT_ENDPOINTS = {
+    "ticket_create": ("POST", "/Ticket"),
+    "ticket_update": ("PATCH", "/Ticket/{ticket_id}"),
+    "ticket_get": ("GET", "/Ticket/{ticket_id}"),
+    "session_create": ("POST", "/Session"),
+}
+
+_DEFAULT_ENDPOINT_IDENTIFIERS = {
+    "ticket_update": "ticket_id",
+    "ticket_get": "ticket_id",
 }
 
 
-def _normalize_method(method: str) -> str:
-    normalized = method.strip().upper()
-    if normalized not in _VALID_METHODS:
-        valid = ", ".join(sorted(_VALID_METHODS))
-        raise ValueError(f"Unsupported HTTP method: {method!r}. Use one of: {valid}")
-    return normalized
+
+class EndpointSetter:
+    def __init__(self, client: "TicketClient") -> None:
+        self._client = client
+
+    
+    def ticket_create(self, *, endpoint: str, method: str = "POST") -> Endpoint:
+        return self._client.register_endpoint("ticket_create", method, endpoint)
+
+    def ticket_get(
+        self,
+        *,
+        endpoint: str,
+        identifier: str = "ticket_id",
+        method: str = "GET",
+    ) -> Endpoint:
+        endpoint_obj = self._client.register_endpoint(
+            "ticket_get",
+            method,
+            endpoint,
+        )
+        self._client.set_endpoint_identifier("ticket_get", identifier)
+        return endpoint_obj
+    
+    def ticket_update(
+        self,
+        *,
+        endpoint: str,
+        identifier: str = "ticket_id",
+        method: str = "POST",
+    ) -> Endpoint:
+        endpoint_obj = self._client.register_endpoint(
+            "ticket_update",
+            method,
+            endpoint,
+        )
+        self._client.set_endpoint_identifier("ticket_update", identifier)
+        return endpoint_obj
 
 
-def _normalize_path(path: str) -> str:
-    normalized = "/" + path.lstrip("/")
-    if normalized == "/":
-        raise ValueError("Endpoint path cannot be empty.")
-    return normalized
-
-
-def _join_base_path(base_path: str, endpoint_path: str) -> str:
-    base = base_path.strip("/")
-    tail = endpoint_path.lstrip("/")
-    if not base:
-        return "/" + tail
-    return f"/{base}/{tail}"
-
-
-@dataclass(frozen=True, slots=True)
-class Endpoint:
-    name: str
-    method: str
-    path: str
-
-    def __post_init__(self) -> None:
-        object.__setattr__(self, "method", _normalize_method(self.method))
-        object.__setattr__(self, "path", _normalize_path(self.path))
-
-    def full_path(self, base_path: str = "") -> str:
-        return _join_base_path(base_path, self.path)
 
 
 class EndpointsRegistry:
@@ -95,10 +106,3 @@ class EndpointsRegistry:
 
     def method_for(self, name: str) -> str:
         return self.get(name).method
-
-if __name__ == "__main__":
-    registry = EndpointsRegistry(base_path="http://localhost:8000")
-    registry.register(Endpoint(name="get_user", method="GET", path="/users/{id}"))
-    endpoint = registry.get("get_user")
-    print(endpoint.method)  # Output: GET
-    print(endpoint.full_path(registry.base_path))  

@@ -6,4 +6,5 @@ Documentacao da api
    :toctree: generated
    :recursive:
 
-   main
+   pyznuny
+   
