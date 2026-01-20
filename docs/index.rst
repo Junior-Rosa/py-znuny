@@ -1,12 +1,13 @@
 pyznuny
 =======
+
 .. contents::
    :local:
    :depth: 2
 
 Welcome to pyznuny's documentation!
 
-pyzuny is a Python library that aims to provide an interface for interacting with the znuny's Ticket API. Among its
+pyznuny is a Python library that aims to provide an interface for interacting with the pyznuny's Ticket API. Among its
 features are:
 
 - Creating and updating tickets
@@ -26,9 +27,9 @@ This section provides a guide on how to use pyznuny various features, with compl
 
 .. toctree::
    :maxdepth: 2
+   :caption: User Guide
 
-   user/quickstart
-   user/install
+   user/index
 
 API Reference
 -------------
@@ -38,5 +39,17 @@ usage:
 
 .. toctree::
    :maxdepth: 2
+   :caption: API Reference
 
    api
+
+Developer Guide
+---------------
+
+This section provides a guide on how to contribute to the development of pyznuny:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer Guide
+
+   dev/index
