@@ -192,7 +192,10 @@ class TicketClient:
                 error = response.text
             # TODO: improve error to handle status codes
             self._raise_error(error)
-            
+        
+        if error := response.json().get("Error"):
+            self._raise_error(error)
+        
         return response
 
     def _raise_error(self, error: Mapping[str, Any]) -> None:
