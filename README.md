@@ -51,27 +51,21 @@ PASSWORD=your-password
 ### Create a ticket
 
 ```python
-from pyznuny.ticket.models import (
-    TicketCreateArticle,
-    TicketCreatePayload,
-    TicketCreateTicket,
-)
-
-payload = TicketCreatePayload(
-    Ticket=TicketCreateTicket(
-        Title="Ticket Title",
-        Queue="Ticket queue",
-        State="Ticket state",
-        Priority="Ticket priority",
-        CustomerUser="customer@example.com",
-    ),
-    Article=TicketCreateArticle(
-        Subject="Ticket subject",
-        Body="Ticket body...",
-        ContentType="text/plain; charset=utf-8",
-        From_="customer@example.com",
-    ),
-)
+payload = {
+    "Ticket": {
+        "Title": "Ticket Title",
+        "Queue": "Ticket queue",
+        "State": "Ticket state",
+        "Priority": "Ticket priority",
+        "CustomerUser": "customer@example.com",
+    },
+    "Article": {
+        "Subject": "Ticket subject",
+        "Body": "Ticket body...",
+        "ContentType": "text/plain; charset=utf-8",
+        "From": "customer@example.com",
+    },
+}
 
 response = client.ticket.create(payload=payload)
 print(response.json())
@@ -111,6 +105,8 @@ response = client.ticket.get(ticket_id=1234)
 - When `username` and `password` are provided, the client logs in and stores
   `session_id` automatically.
 - You can pass a pre-configured `httpx.Client` via `client=...` if needed.
+- You can send payloads as plain dicts using the same attributes shown in the
+  examples.
 
 ## License
 
