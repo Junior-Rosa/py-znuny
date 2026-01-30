@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Literal, Mapping, get_args
+from typing import Any, Literal, Mapping
 
 from pydantic import BaseModel
 
@@ -14,15 +14,6 @@ def _clean_dict(data: Mapping[str, Any]) -> dict[str, Any]:
 def _require_non_empty(value: str, field: str) -> None:
     if not value or not str(value).strip():
         raise ValueError(f"{field} is required.")
-
-
-def _normalize_method(method: str) -> str:
-    normalized = method.strip().upper()
-    if normalized not in get_args(HttpMethod):
-        valid = ", ".join(sorted(get_args(HttpMethod)))
-        raise ValueError(f"Unsupported HTTP method: {method!r}. Use one of: {valid}")
-    return normalized
-
 
 def _normalize_path(path: str) -> str:
     normalized = "/" + path.lstrip("/")
@@ -48,13 +39,14 @@ class Endpoint(BaseModel):
     :type method: HttpMethod
     :arg path: Endpoint path
     :type path: str
+    :raises pydantic.ValidationError: If http method is invalid
+    :raises ValueError: If endpoint path is empty
     """
     name: str
     method: HttpMethod
     path: str
 
     def __post_init__(self) -> None:
-        object.__setattr__(self, "method", _normalize_method(self.method))
         object.__setattr__(self, "path", _normalize_path(self.path))
 
     def full_path(self, base_path: str = "") -> str:
@@ -72,6 +64,29 @@ class Endpoint(BaseModel):
 
 @dataclass(slots=True)
 class TicketCreateTicket:
+    """
+    Represents the metadata for a ticket
+
+    :param Title: Title of the ticket
+    :type Title: str
+    :param Queue: Queue of the ticket
+    :type Queue: str
+    :param State: State of the ticket
+    :type State: str
+    :param Priority: Priority of the ticket
+    :type Priority: str
+    :param CustomerUser: Customer user of the ticket
+    :type CustomerUser: str | None
+    :param Type: Type of the ticket
+    :type Type: str | None
+    :param Service: Service of the ticket
+    :type Service: str | None
+    :param SLA: SLA of the ticket
+    :type SLA: str | None
+    :param Owner: Owner of the ticket
+    :type Owner: str | None
+    :raises ValueError: If any required field is empty
+    """
     Title: str
     Queue: str
     State: str
@@ -109,6 +124,25 @@ class TicketCreateTicket:
 
 @dataclass(slots=True)
 class TicketCreateArticle:
+    """
+    Represents the article content for a ticket
+
+    :param Subject: Subject of the article
+    :type Subject: str
+    :param Body: Body of the article
+    :type Body: str
+    :param ContentType: Content type of the article
+    :type ContentType: str
+    :param Charset: Charset of the article, defaults to None
+    :type Charset: str | None
+    :param MimeType: MIME type of the article, defaults to None
+    :type MimeType: str | None
+    :param SenderType: Sender type of the article, defaults to None
+    :type SenderType: str | None
+    :param From_: From address of the article, defaults to None
+    :type From_: str | None
+    :raises ValueError: If any required field is empty
+    """
     Subject: str
     Body: str
     ContentType: str
@@ -139,6 +173,20 @@ class TicketCreateArticle:
 
 @dataclass(slots=True)
 class TicketCreatePayload:
+    """
+    Represents the payload for creating a ticket
+
+    :param Ticket: Ticket metadata
+    :type Ticket: TicketCreateTicket
+    :param Article: Article content
+    :type Article: TicketCreateArticle
+    :param DynamicField: Dynamic fields for the ticket, defaults to None
+    :type DynamicField: Mapping[str, Any] | None
+    :param Attachment: Attachments for the ticket, defaults to None
+    :type Attachment: list[Mapping[str, Any]] | None
+    :param TimeUnit: Time unit for the ticket, defaults to None
+    :type TimeUnit: int | None
+    """
     Ticket: TicketCreateTicket
     Article: TicketCreateArticle
     DynamicField: Mapping[str, Any] | None = None

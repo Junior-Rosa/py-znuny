@@ -1,12 +1,9 @@
-
-
 from typing import Any, Mapping
 
 
 class TicketClientError(Exception):
     """
-    Docstring for TicketClientError
-    Represents an error returned by the TicketClient API.
+    Error returned by the TicketClient API.
     """
     def __init__(self, error: Mapping[str, Any] | str) -> None:
         
