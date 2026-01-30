@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Iterable, Mapping, MutableMapping
 
-from .models import Endpoint
+from .models import Endpoint, HttpMethod
 
 if TYPE_CHECKING:
     from pyznuny.ticket.client import TicketClient
@@ -31,15 +31,14 @@ class EndpointSetter:
     def __init__(self, client: "TicketClient") -> None:
         self._client = client
 
-    
-    def ticket_create(self, *, endpoint: str, method: str = "POST") -> Endpoint:
+    def ticket_create(self, *, endpoint: str, method: HttpMethod = "POST") -> Endpoint:
         """
         Sets a custom endpoint for creating tickets
 
         :param endpoint: Custom endpoint for creating tickets
         :type endpoint: str
         :param method: HTTP method for creating tickets, defaults to POST
-        :type method: str
+        :type method: HttpMethod
         :return: Endpoint object
         :rtype: Endpoint
         """
@@ -50,7 +49,7 @@ class EndpointSetter:
         *,
         endpoint: str,
         identifier: str = "ticket_id",
-        method: str = "GET",
+        method: HttpMethod = "GET",
     ) -> Endpoint:
         """
         Sets a custom endpoint for retrieving a ticket.
@@ -60,7 +59,7 @@ class EndpointSetter:
         :param identifier: Identifier for the ticket ID in the endpoint path
         :type identifier: str
         :param method: HTTP method for the endpoint, defaults to GET
-        :type method: str
+        :type method: HttpMethod
         :return: Registered endpoint
         :rtype: Endpoint
         """
@@ -77,7 +76,7 @@ class EndpointSetter:
         *,
         endpoint: str,
         identifier: str = "ticket_id",
-        method: str = "POST",
+        method: HttpMethod = "POST",
     ) -> Endpoint:
         """
         Sets a custom endpoint for updating a ticket.
@@ -87,7 +86,7 @@ class EndpointSetter:
         :param identifier: Identifier for the ticket ID in the endpoint path
         :type identifier: str
         :param method: HTTP method for the endpoint, defaults to POST
-        :type method: str
+        :type method: HttpMethod
         :return: Registered endpoint
         :rtype: Endpoint
         """
@@ -133,7 +132,7 @@ class EndpointsRegistry:
         self._endpoints[endpoint.name] = endpoint
         return endpoint
 
-    def configure(self, mapping: Mapping[str, tuple[str, str]]) -> None:
+    def configure(self, mapping: Mapping[str, tuple[HttpMethod, str]]) -> None:
         for name, (method, path) in mapping.items():
             self.register(Endpoint(name=name, method=method, path=path))
 
@@ -150,5 +149,5 @@ class EndpointsRegistry:
         endpoint = self.get(name)
         return endpoint.full_path(self._base_path)
 
-    def method_for(self, name: str) -> str:
+    def method_for(self, name: str) -> HttpMethod:
         return self.get(name).method
