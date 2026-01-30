@@ -35,14 +35,11 @@ Setting an endpoint
 
 Now that we have a client, we will create an endpoint, in our case we will do an endpoint for getting a ticket by its ID
 
-To do this we will use the ``EndpointSetter`` class, which abstracts the process of setting an endpoint for common use cases
+To do this we will use the ``register_endpoint`` method, which abstracts the process of setting an endpoint for common use cases
 
 .. code-block:: python
 
-    from pyznuny.ticket import EndpointSetter
-
-    endpoint = EndpointSetter(client=client)
-        .ticket_create("/ticket_create")
+    endpoint = client.register_endpoint("ticket_get", "POST", "/ticket_create/")
 
     print(endpoint)
 
