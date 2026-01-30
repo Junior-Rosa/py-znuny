@@ -5,42 +5,16 @@ from typing import Any
 
 import httpx
 
-if __name__ == "__main__" and __package__ is None:
-    import os
-    import sys
-
-    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-    from pyznuny.ticket.endpoints import (
-        _DEFAULT_ENDPOINT_IDENTIFIERS,
-        _DEFAULT_ENDPOINTS,
-        Endpoint,
-        EndpointSetter,
-        EndpointsRegistry,
-    )
-    from pyznuny.ticket.exceptions import TicketClientError
-    from pyznuny.ticket.models import (
-        TicketCreateArticle,
-        TicketCreatePayload,
-        TicketCreateTicket,
-    )
-    from pyznuny.ticket.routes import SessionRoutes, TicketRoutes
-else:
-    from .endpoints import (
-        _DEFAULT_ENDPOINT_IDENTIFIERS,
-        _DEFAULT_ENDPOINTS,
-        Endpoint,
-        EndpointSetter,
-        EndpointsRegistry,
-    )
-    from .exceptions import TicketClientError
-    from .models import (
-        TicketCreateArticle,
-        TicketCreatePayload,
-        TicketCreateTicket,
-    )
-    from .routes import SessionRoutes, TicketRoutes
-
-
+from .endpoints import (
+    _DEFAULT_ENDPOINT_IDENTIFIERS,
+    _DEFAULT_ENDPOINTS,
+    Endpoint,
+    EndpointSetter,
+    EndpointsRegistry,
+)
+from .exceptions import TicketClientError
+from .models import HttpMethod
+from .routes import SessionRoutes, TicketRoutes
 
 
 class TicketClient:
@@ -94,14 +68,14 @@ class TicketClient:
     def endpoints(self) -> EndpointsRegistry:
         return self._endpoints
 
-    def register_endpoint(self, name: str, method: str, path: str) -> Endpoint:
+    def register_endpoint(self, name: str, method: HttpMethod, path: str) -> Endpoint:
         """
         Registers a custom endpoint for the Ticket API
 
         :param name: Name of the endpoint
         :type name: str
         :param method: HTTP method for the endpoint
-        :type method: str
+        :type method: HttpMethod
         :param path: Endpoint path
         :type path: str
         :return: Registered endpoint
@@ -147,13 +121,14 @@ class TicketClient:
         """
         response = self.session.create(username, password)
         self.session_id = response.json().get("SessionID")
+        return response
 
 
     def request(
         self,
         endpoint_name: str,
         *,
-        method: str | None = None,
+        method: HttpMethod | None = None,
         path: str | None = None,
         path_params: Mapping[str, Any] | None = None,
         **kwargs: Any,
@@ -164,7 +139,7 @@ class TicketClient:
         :param endpoint_name: Name of the endpoint
         :type endpoint_name: str
         :param method: HTTP method for the request, defaults to None
-        :type method: str | None
+        :type method: HttpMethod | None
         :param path: Custom endpoint path, defaults to None
         :type path: str | None
         :param path_params: Parameters for the endpoint path, defaults to None
@@ -219,64 +194,3 @@ class TicketClient:
                 self._endpoints.register(
                     Endpoint(name=name, method=method, path=path)
                 )
-
-
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
-    import os
-    
-    class_payload_create = TicketCreatePayload(
-    Ticket=TicketCreateTicket(
-        Title="Erro no login",
-        Queue="ITS::Ops-TechOps::Sentinelops::Cops React - N1",
-        State="new",
-        Priority="3 normal",
-        CustomerUser="joel.junior@eitisolucoes.com.br",
-        Type="Monitoramento",
-    ),
-    Article=TicketCreateArticle(
-        Subject="Não consigo acessar",
-        Body="Detalhes do problema...",
-        ContentType="text/plain; charset=utf-8",
-        Charset="utf-8",
-        MimeType="text/plain",
-        SenderType="customer",
-        From_="joel.junior@eitisolucoes.com.br",
-    ),
-)
-
-    payload_create = {
-        "Ticket": {
-            "Title": "Erro no login",
-            "Queue": "ITS::Ops-TechOps::Sentinelops::Cops React - N1",
-            "State": "new",
-            "Priority": "3 normal",
-            "CustomerUser": "joel.junior@eitisolucoes.com.br",
-            "Type": "Monitoramento",
-        },
-        "Article": {
-            "Subject": "Não consigo acessar",
-            "Body": "Detalhes do problema...",
-            "ContentType": "text/plain; charset=utf-8",
-            "Charset": "utf-8",
-            "MimeType": "text/plain",
-            "SenderType": "customer",
-            "From": "joel.junior@eitisolucoes.com.br",
-        },
-    }
-    
-    payload_update = {
-        "Ticket": {
-            "State": "open",
-        }
-    }
-    
-    
-    client = TicketClient(base_url=os.getenv("HOST"), 
-                          username=os.getenv("USER_LOGIN"), password=os.getenv("PASS"))
-    
-    client.set_endpoint.ticket_get(endpoint="Tickets/{ticket_id}", 
-                                   identifier="ticket_id")
-    response = client.ticket.get(ticket_id=5853276)
-    print("GET Ticket Response:", response.json())
