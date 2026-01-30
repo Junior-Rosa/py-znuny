@@ -4,10 +4,10 @@ from typing import TYPE_CHECKING, Any, Mapping
 
 import httpx
 
-from pyznuny.ticket.models import TicketCreatePayload
+from .models import TicketCreatePayload
 
 if TYPE_CHECKING:
-    from pyznuny.ticket.client import TicketClient
+    from .client import TicketClient
 
 
 class SessionRoutes:
