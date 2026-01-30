@@ -1,12 +1,12 @@
 # Contributor Guidelines
 
 <!-- When the documentation page is ready, replace the contribution guide link with the actual link -->
-A complete guide on how to contribute with the codebase can be found here [Contributing Guide](https://github.com/eitisolucoes/pyznuny/blob/main/docs/dev/contributing.rst)
+A complete guide on how to contribute with the codebase can be found here [Contributing Guide](https://pyznuny.readthedocs.io/en/latest/dev/contributing.html)
 
 # About the Github Issues
 
 The Github Issues is for bug reports and features requests only. If you instead have a question on how to use the pyznuny
-feel free to use the documentation page, or enter in contact with maintainer if your question cant be found there
+feel free to use the documentation page, or enter in contact with a maintainer if your question cant be found there
 
 ## How to open a bug report
 
