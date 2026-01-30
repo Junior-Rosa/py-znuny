@@ -23,6 +23,10 @@ Or with uv:
 uv add pyznuny
 ```
 
+## Documentation
+
+For a complete API Reference and guide on how to use pyznuny, please visit our [documentation](https://pyznuny.readthedocs.io/en/latest/).
+
 ## Quick start
 
 Create a client and authenticate using environment variables.
