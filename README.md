@@ -1,5 +1,8 @@
 # pyznuny
 
+[![PyPI version](https://img.shields.io/pypi/v/pyznuny)](https://pypi.org/project/pyznuny/)
+[![PyPI license](https://img.shields.io/pypi/l/pyznuny)](https://pypi.org/project/pyznuny/)
+
 A Python client for interacting with the Znuny ticketing system API.
 
 ## Features
