@@ -25,7 +25,7 @@ uv add pyznuny
 
 ## Documentation
 
-For a complete API Reference and guide on how to use pyznuny, please visit our [documentation](https://pyznuny.readthedocs.io/en/latest/).
+For a complete API Reference and guide on how to use pyznuny, please visit our [documentation](https://pyznuny.readthedocs.io/en/latest/)
 
 ## Quick start
 
