@@ -114,7 +114,3 @@ response = client.ticket.get(ticket_id=1234)
 - You can pass a pre-configured `httpx.Client` via `client=...` if needed.
 - You can send payloads as plain dicts using the same attributes shown in the
   examples.
-
-## License
-
-MIT
