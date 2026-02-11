@@ -5,9 +5,9 @@ from pydantic import ValidationError
 
 from src.pyznuny.ticket.models import (
     Endpoint,
-    TicketCreateTicket,
     TicketCreateArticle,
     TicketCreatePayload,
+    TicketCreateTicket,
 )
 
 
@@ -48,7 +48,10 @@ class TestTicketCreateTicket:
 
     def test_ticket_validate_required_fields(self):
         """Test validate fails with empty required fields"""
-        ticket = TicketCreateTicket(Title="", Queue="Support", State="new", Priority="normal")
+        ticket = TicketCreateTicket(Title="",
+                                Queue="Support",
+                                State="new",
+                                Priority="normal")
         with pytest.raises(ValueError, match="Ticket.Title is required"):
             ticket.validate()
 

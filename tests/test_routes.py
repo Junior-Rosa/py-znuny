@@ -1,15 +1,16 @@
 from __future__ import annotations
 
-import httpx
 from unittest.mock import Mock, patch
 
-from src.pyznuny.ticket.routes import SessionRoutes, TicketRoutes
+import httpx
+
 from src.pyznuny.ticket.client import TicketClient
 from src.pyznuny.ticket.models import (
+    TicketCreateArticle,
     TicketCreatePayload,
     TicketCreateTicket,
-    TicketCreateArticle,
 )
+from src.pyznuny.ticket.routes import SessionRoutes, TicketRoutes
 
 
 class TestSessionRoutes:
@@ -20,7 +21,8 @@ class TestSessionRoutes:
         mock_response = Mock(spec=httpx.Response)
         mock_response.json.return_value = {"SessionID": "test-session-id"}
 
-        with patch.object(TicketClient, 'request', return_value=mock_response) as mock_request:
+        with (patch.object(TicketClient, 'request', return_value=mock_response)
+              as mock_request):
             client = TicketClient(base_url="https://api.example.com")
             session_routes = SessionRoutes(client)
 
@@ -55,18 +57,19 @@ class TestTicketRoutes:
         )
         payload = TicketCreatePayload(Ticket=ticket, Article=article)
 
-        with patch.object(TicketClient, 'request', return_value=mock_response) as mock_request:
+        with (patch.object(TicketClient, 'request', return_value=mock_response)
+              as mock_request):
             client = TicketClient(base_url="https://api.example.com")
             client.session_id = "test-session-id"
             ticket_routes = TicketRoutes(client)
 
-            response = ticket_routes.create(payload)
+            ticket_routes.create(payload)
 
-            call_args = mock_request.call_args
-            assert call_args[0][0] == "ticket_create"
-            assert "SessionID" in call_args[1]["json"]
-            assert "Ticket" in call_args[1]["json"]
-            assert "Article" in call_args[1]["json"]
+            args, kwargs = mock_request.call_args
+            assert args[0] == "ticket_create"
+            assert "SessionID" in kwargs["json"]
+            assert "Ticket" in kwargs["json"]
+            assert "Article" in kwargs["json"]
             client.close()
 
     def test_update_ticket(self):
@@ -74,32 +77,37 @@ class TestTicketRoutes:
         mock_response = Mock(spec=httpx.Response)
         mock_response.json.return_value = {"TicketID": "123"}
 
-        with patch.object(TicketClient, 'request', return_value=mock_response) as mock_request:
+        with (patch.object(TicketClient, 'request', return_value=mock_response)
+              as mock_request):
             client = TicketClient(base_url="https://api.example.com")
             client.session_id = "test-session-id"
             ticket_routes = TicketRoutes(client)
-            response = ticket_routes.update("123", Ticket={"Title": "Updated Title"})
+            ticket_routes.update("123", Ticket={"Title": "Updated Title"})
 
-            call_args = mock_request.call_args
-            assert call_args[0][0] == "ticket_update"
-            assert call_args[1]["path_params"]["ticket_id"] == "123"
-            assert call_args[1]["json"]["Ticket"]["Title"] == "Updated Title"
+            args, kwargs = mock_request.call_args
+            assert args[0] == "ticket_update"
+            assert kwargs["path_params"]["ticket_id"] == "123"
+            assert kwargs["json"]["Ticket"]["Title"] == "Updated Title"
             client.close()
 
     def test_get_ticket(self):
         """Test getting a ticket"""
         mock_response = Mock(spec=httpx.Response)
-        mock_response.json.return_value = {"Ticket": [{"TicketID": "123", "Title": "Test"}]}
+        mock_response.json.return_value = {"Ticket": [
+            {"TicketID": "123",
+             "Title": "Test"}]
+        }
 
-        with patch.object(TicketClient, 'request', return_value=mock_response) as mock_request:
+        with (patch.object(TicketClient, 'request', return_value=mock_response)
+              as mock_request):
             client = TicketClient(base_url="https://api.example.com")
             client.session_id = "test-session-id"
             ticket_routes = TicketRoutes(client)
 
-            response = ticket_routes.get("123")
+            ticket_routes.get("123")
 
-            call_args = mock_request.call_args
-            assert call_args[0][0] == "ticket_get"
-            assert call_args[1]["path_params"]["ticket_id"] == "123"
-            assert call_args[1]["params"]["SessionID"] == "test-session-id"
+            args, kwargs = mock_request.call_args
+            assert args[0] == "ticket_get"
+            assert kwargs["path_params"]["ticket_id"] == "123"
+            assert kwargs["params"]["SessionID"] == "test-session-id"
             client.close()

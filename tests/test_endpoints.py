@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import pytest
 
+from src.pyznuny.ticket.client import TicketClient
 from src.pyznuny.ticket.endpoints import EndpointSetter, EndpointsRegistry
 from src.pyznuny.ticket.models import Endpoint
-from src.pyznuny.ticket.client import TicketClient
 
 
 class TestEndpointsRegistry:

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-import pytest
-import httpx
 from unittest.mock import Mock, patch
+
+import httpx
+import pytest
 
 from src.pyznuny.ticket.client import TicketClient
 from src.pyznuny.ticket.exceptions import TicketClientError
@@ -46,7 +47,8 @@ class TestTicketClient:
         mock_response.json.return_value = {}
         mock_response.raise_for_status = Mock()
 
-        with patch.object(httpx.Client, 'request', return_value=mock_response) as mock_request:
+        with (patch.object(httpx.Client, 'request', return_value=mock_response)
+              as mock_request):
             client = TicketClient(base_url="https://api.example.com")
             client.request("ticket_get", path_params={"ticket_id": "123"})
             call_args = mock_request.call_args
