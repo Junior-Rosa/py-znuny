@@ -1,15 +1,12 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+import base64
+import binascii
 from typing import Any, Literal, Mapping
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 HttpMethod = Literal["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
-
-def _clean_dict(data: Mapping[str, Any]) -> dict[str, Any]:
-    return {key: value for key, value in data.items() if value is not None}
-
 
 def _require_non_empty(value: str, field: str) -> None:
     if not value or not str(value).strip():
@@ -46,8 +43,12 @@ class Endpoint(BaseModel):
     method: HttpMethod
     path: str
 
-    def __post_init__(self) -> None:
-        object.__setattr__(self, "path", _normalize_path(self.path))
+    model_config = ConfigDict(extra="ignore")
+
+    @field_validator("path")
+    @classmethod
+    def _validate_path(cls, value: str) -> str:
+        return _normalize_path(value)
 
     def full_path(self, base_path: str = "") -> str:
         """
@@ -62,8 +63,7 @@ class Endpoint(BaseModel):
 
 
 
-@dataclass(slots=True)
-class TicketCreateTicket:
+class TicketCreateTicket(BaseModel):
     """
     Represents the metadata for a ticket
 
@@ -89,41 +89,47 @@ class TicketCreateTicket:
     """
     Title: str
     Queue: str
-    State: str
-    Priority: str
-    CustomerUser: str | None = None
+    CustomerUser: str
+    Priority: str | None = None
+    PriorityID: int | None = None
+    State: str | None = None
+    StateID: int | None = None
     Type: str | None = None
     Service: str | None = None
     SLA: str | None = None
     Owner: str | None = None
     Responsible: str | None = None
 
-    def validate(self) -> None:
-        _require_non_empty(self.Title, "Ticket.Title")
-        _require_non_empty(self.Queue, "Ticket.Queue")
-        _require_non_empty(self.State, "Ticket.State")
-        _require_non_empty(self.Priority, "Ticket.Priority")
+    model_config = ConfigDict(extra="ignore")
+
+    @field_validator("Title", "Queue", "CustomerUser")
+    @classmethod
+    def _validate_required(cls, value: str, info) -> str:
+        _require_non_empty(value, f"Ticket.{info.field_name}")
+        return value
+
+    @model_validator(mode="after")
+    def _validate_exactly_one_choices(self) -> "TicketCreateTicket":
+        pairs = (
+            ("State", self.State, self.StateID),
+            ("Priority", self.Priority, self.PriorityID),
+        )
+        for name, text_value, id_value in pairs:
+            has_text = bool(text_value is not None and str(text_value).strip())
+            has_id = id_value is not None
+            if has_text == has_id:
+                raise ValueError(
+                    f"Provide exactly one of Ticket.{name} or Ticket.{name}ID."
+                )
+            if has_text:
+                _require_non_empty(text_value, f"Ticket.{name}")
+        return self
 
     def to_dict(self) -> dict[str, Any]:
-        self.validate()
-        return _clean_dict(
-            {
-                "Title": self.Title,
-                "Queue": self.Queue,
-                "State": self.State,
-                "Priority": self.Priority,
-                "CustomerUser": self.CustomerUser,
-                "Type": self.Type,
-                "Service": self.Service,
-                "SLA": self.SLA,
-                "Owner": self.Owner,
-                "Responsible": self.Responsible,
-            }
-        )
+        return self.model_dump(by_alias=True, exclude_none=True)
 
 
-@dataclass(slots=True)
-class TicketCreateArticle:
+class TicketCreateArticle(BaseModel):
     """
     Represents the article content for a ticket
 
@@ -145,34 +151,85 @@ class TicketCreateArticle:
     """
     Subject: str
     Body: str
-    ContentType: str
+    ContentType: str | None = None
     Charset: str | None = None
     MimeType: str | None = None
     SenderType: str | None = None
-    From_: str | None = None
+    From_: str | None = Field(default=None, alias="From")
+    Attachment: list["TicketCreateArticleAttachment"] | None = None
 
-    def validate(self) -> None:
-        _require_non_empty(self.Subject, "Article.Subject")
-        _require_non_empty(self.Body, "Article.Body")
-        _require_non_empty(self.ContentType, "Article.ContentType")
+    model_config = ConfigDict(extra="ignore", populate_by_name=True)
+
+    @field_validator("Subject", "Body")
+    @classmethod
+    def _validate_required(cls, value: str, info) -> str:
+        _require_non_empty(value, f"Article.{info.field_name}")
+        return value
+
+    @field_validator("ContentType", "MimeType", "Charset")
+    @classmethod
+    def _validate_optional_non_empty(cls, value: str | None, info) -> str | None:
+        if value is None:
+            return value
+        _require_non_empty(value, f"Article.{info.field_name}")
+        return value
+
+    @model_validator(mode="after")
+    def _validate_content_type_choice(self) -> "TicketCreateArticle":
+        has_content_type = self.ContentType is not None and str(self.ContentType).strip()
+        has_mime = self.MimeType is not None and str(self.MimeType).strip()
+        has_charset = self.Charset is not None and str(self.Charset).strip()
+        if not has_content_type and not (has_mime and has_charset):
+            raise ValueError(
+                "Provide Article.ContentType or both Article.MimeType and Article.Charset."
+            )
+        return self
 
     def to_dict(self) -> dict[str, Any]:
-        self.validate()
-        return _clean_dict(
-            {
-                "Subject": self.Subject,
-                "Body": self.Body,
-                "ContentType": self.ContentType,
-                "Charset": self.Charset,
-                "MimeType": self.MimeType,
-                "SenderType": self.SenderType,
-                "From": self.From_,
-            }
-        )
+        return self.model_dump(by_alias=True, exclude_none=True)
 
+class TicketCreateArticleAttachment(BaseModel):
+    """
+    Represents an attachment for a ticket article
 
-@dataclass(slots=True)
-class TicketCreatePayload:
+    :param Filename: Name of the attachment file
+    :type Filename: str
+    :param Content: Base64 encoded content of the attachment
+    :type Content: str
+    :param ContentType: MIME type of the attachment, defaults to None
+    :type ContentType: str | None
+    :raises ValueError: If any required field is empty
+    """
+    Filename: str
+    Content: str
+    ContentType: str | None = None
+
+    model_config = ConfigDict(extra="ignore")
+
+    @field_validator("Filename", "Content")
+    @classmethod
+    def _validate_required(cls, value: str, info) -> str:
+        _require_non_empty(value, f"Attachment.{info.field_name}")
+        return value
+
+    @field_validator("Content")
+    @classmethod
+    def _validate_base64_content(cls, value: str) -> str:
+        try:
+            base64.b64decode(value, validate=True)
+        except (binascii.Error, ValueError) as exc:
+            raise ValueError("Attachment.Content must be valid base64.") from exc
+        return value
+
+    @field_validator("ContentType")
+    @classmethod
+    def _validate_optional_non_empty(cls, value: str | None, info) -> str | None:
+        if value is None:
+            return value
+        _require_non_empty(value, f"Attachment.{info.field_name}")
+        return value
+
+class TicketCreatePayload(BaseModel):
     """
     Represents the payload for creating a ticket
 
@@ -183,29 +240,67 @@ class TicketCreatePayload:
     :param DynamicField: Dynamic fields for the ticket, defaults to None
     :type DynamicField: Mapping[str, Any] | None
     :param Attachment: Attachments for the ticket, defaults to None
-    :type Attachment: list[Mapping[str, Any]] | None
+    :type Attachment: list[TicketCreateArticleAttachment] | TicketCreateArticleAttachment | None
     :param TimeUnit: Time unit for the ticket, defaults to None
     :type TimeUnit: int | None
     """
     Ticket: TicketCreateTicket
     Article: TicketCreateArticle
     DynamicField: Mapping[str, Any] | None = None
-    Attachment: list[Mapping[str, Any]] | None = None
+    Attachment: list[TicketCreateArticleAttachment] | TicketCreateArticleAttachment | None = None
     TimeUnit: int | None = None
 
+    model_config = ConfigDict(extra="ignore")
+
+    @field_validator("Attachment", mode="before")
+    @classmethod
+    def _coerce_attachment_list(cls, value):
+        if value is None:
+            return value
+        if isinstance(value, list):
+            return value
+        return [value]
+
     def to_dict(self) -> dict[str, Any]:
-        return _clean_dict(
-            {
-                "Ticket": self.Ticket.to_dict(),
-                "Article": self.Article.to_dict(),
-                "DynamicField": self.DynamicField,
-                "Attachment": self.Attachment,
-                "TimeUnit": self.TimeUnit,
-            }
-        )
+        return self.model_dump(by_alias=True, exclude_none=True)
 
 
+class TicketUpdateTicket(BaseModel):
+    """
+    Partial update payload for a ticket. All fields are optional, but if
+    provided they must be non-empty strings.
+    """
+    Title: str | None = None
+    Queue: str | None = None
+    State: str | None = None
+    Priority: str | None = None
+    CustomerUser: str | None = None
+    Type: str | None = None
+    Service: str | None = None
+    SLA: str | None = None
+    Owner: str | None = None
+    Responsible: str | None = None
 
-class TicketUpdateTicket(TicketCreateTicket):
-    def validate(self):
-        pass
+    model_config = ConfigDict(extra="ignore")
+
+    @field_validator(
+        "Title",
+        "Queue",
+        "State",
+        "Priority",
+        "CustomerUser",
+        "Type",
+        "Service",
+        "SLA",
+        "Owner",
+        "Responsible",
+    )
+    @classmethod
+    def _validate_optional_non_empty(cls, value: str | None, info) -> str | None:
+        if value is None:
+            return value
+        _require_non_empty(value, f"Ticket.{info.field_name}")
+        return value
+
+    def to_dict(self) -> dict[str, Any]:
+        return self.model_dump(by_alias=True, exclude_none=True)

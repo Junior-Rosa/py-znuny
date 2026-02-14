@@ -37,6 +37,7 @@ Documentation = "https://pyznuny.readthedocs.io/en/latest/"
 dev = [
     "linkify-it-py>=2.0.3",
     "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
     "python-dotenv>=1.2.1",
     "ruff>=0.14.13",
 ]
