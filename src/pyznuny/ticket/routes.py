@@ -60,7 +60,6 @@ class TicketRoutes:
         """
         if payload is None:
             payload_dict = dict(payload_kwargs)
-            
         elif isinstance(payload, TicketCreatePayload):
             payload_dict = payload.to_dict()
             payload_dict.update(payload_kwargs)
@@ -68,6 +67,7 @@ class TicketRoutes:
             payload_dict = dict(payload)
             payload_dict.update(payload_kwargs)
 
+        payload_dict = TicketCreatePayload.model_validate(payload_dict).to_dict()
         payload_dict.update({"SessionID": self._client.session_id})
         return self._client.request("ticket_create", json=payload_dict)
     
