@@ -60,7 +60,6 @@ class TicketRoutes:
         """
         if payload is None:
             payload_dict = dict(payload_kwargs)
-            
         elif isinstance(payload, TicketCreatePayload):
             payload_dict = payload.to_dict()
             payload_dict.update(payload_kwargs)
@@ -68,6 +67,7 @@ class TicketRoutes:
             payload_dict = dict(payload)
             payload_dict.update(payload_kwargs)
 
+        payload_dict = TicketCreatePayload.model_validate(payload_dict).to_dict()
         payload_dict.update({"SessionID": self._client.session_id})
         return self._client.request("ticket_create", json=payload_dict)
     
@@ -103,7 +103,7 @@ class TicketRoutes:
         :param dynamic_fields: Number of dynamic fields to retrieve, defaults to 0
         :type dynamic_fields: int
         :param all_articles: Whether to retrieve all articles, 1 for true 0 for false,
-        defaults to 0
+            defaults to 0
         :type all_articles: int
         :return: Response object
         :rtype: httpx.Response
