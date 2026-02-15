@@ -176,12 +176,14 @@ class TicketCreateArticle(BaseModel):
 
     @model_validator(mode="after")
     def _validate_content_type_choice(self) -> "TicketCreateArticle":
-        has_content_type = self.ContentType is not None and str(self.ContentType).strip()
+        has_content_type = (self.ContentType is not None and str(self.ContentType)
+                            .strip())
         has_mime = self.MimeType is not None and str(self.MimeType).strip()
         has_charset = self.Charset is not None and str(self.Charset).strip()
         if not has_content_type and not (has_mime and has_charset):
             raise ValueError(
-                "Provide Article.ContentType or both Article.MimeType and Article.Charset."
+                "Provide Article.ContentType "
+                "or both Article.MimeType and Article.Charset."
             )
         return self
 
@@ -240,14 +242,17 @@ class TicketCreatePayload(BaseModel):
     :param DynamicField: Dynamic fields for the ticket, defaults to None
     :type DynamicField: Mapping[str, Any] | None
     :param Attachment: Attachments for the ticket, defaults to None
-    :type Attachment: list[TicketCreateArticleAttachment] | TicketCreateArticleAttachment | None
+    :type Attachment:
+        list[TicketCreateArticleAttachment] | TicketCreateArticleAttachment | None
     :param TimeUnit: Time unit for the ticket, defaults to None
     :type TimeUnit: int | None
     """
     Ticket: TicketCreateTicket
     Article: TicketCreateArticle
     DynamicField: Mapping[str, Any] | None = None
-    Attachment: list[TicketCreateArticleAttachment] | TicketCreateArticleAttachment | None = None
+    Attachment: (list[TicketCreateArticleAttachment] |
+                 TicketCreateArticleAttachment |
+                 None) = None
     TimeUnit: int | None = None
 
     model_config = ConfigDict(extra="ignore")

@@ -103,7 +103,7 @@ class TicketRoutes:
         :param dynamic_fields: Number of dynamic fields to retrieve, defaults to 0
         :type dynamic_fields: int
         :param all_articles: Whether to retrieve all articles, 1 for true 0 for false,
-        defaults to 0
+            defaults to 0
         :type all_articles: int
         :return: Response object
         :rtype: httpx.Response

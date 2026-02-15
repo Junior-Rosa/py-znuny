@@ -81,7 +81,8 @@ def test_ticket_create_ticket_priority_exactly_one():
         )
 
     TicketCreateTicket.model_validate(_valid_ticket({"Priority": "3 normal"}))
-    TicketCreateTicket.model_validate(_valid_ticket({"Priority": None, "PriorityID": 3}))
+    TicketCreateTicket.model_validate(_valid_ticket({"Priority": None,
+                                                     "PriorityID": 3}))
 
 
 def test_article_requires_content_type_or_mime_and_charset():
@@ -96,7 +97,9 @@ def test_article_requires_content_type_or_mime_and_charset():
         )
 
     TicketCreateArticle.model_validate(
-        _valid_article({"ContentType": None, "MimeType": "text/plain", "Charset": "utf-8"})
+        _valid_article({"ContentType": None,
+                        "MimeType": "text/plain",
+                        "Charset": "utf-8"})
     )
 
     TicketCreateArticle.model_validate(_valid_article({"ContentType": "text/plain"}))
@@ -118,7 +121,9 @@ def test_attachment_base64_validation():
 
     with pytest.raises(ValidationError):
         TicketCreateArticleAttachment.model_validate(
-            {"Filename": "file.txt", "Content": "not-base64", "ContentType": "text/plain"}
+            {"Filename": "file.txt",
+             "Content": "not-base64",
+             "ContentType": "text/plain"}
         )
 
 
