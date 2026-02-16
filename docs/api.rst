@@ -8,13 +8,13 @@ Documentacao da api
    :recursive:
 
    pyznuny
-   pyznuny.ticket.routes.TicketRoutes
+   pyznuny.ticket.TicketClient.ticket
 
 Ticket Routes
 -------------
 
 Metodos expostos em ``TicketClient.ticket``:
 
-.. autoclass:: pyznuny.ticket.routes.TicketRoutes
+.. autoclass:: pyznuny.ticket.TicketClient.ticket
    :members: create, update, get
    
