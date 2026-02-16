@@ -61,21 +61,22 @@ First we create a payload for the ticket creation
 
 .. code-block:: python
 
-    from pyznuny.ticket.models import TicketCreatePayload, TicketCreateTicket, TicketCreateArticle
+    payload = {
+        "Ticket": {
+            "Title": "Ticket Title",
+            "Queue": "Ticket queue",
+            "State": "Ticket state",
+            "Priority": "Ticket priority",
+            "CustomerUser": "customer@example.com",
+        },
+        "Article": {
+            "Subject": "Ticket subject",
+            "Body": "Ticket body...",
+            "ContentType": "text/plain; charset=utf-8",
+            "From": "customer@example.com",
+        },
+    }
 
-    payload = TicketCreatePayload(
-        Ticket=TicketCreateTicket(
-            Title="Ticket Title",
-            Queue="Ticket queue",
-            State="Ticket state",
-            Priority="Ticket priority",
-        ),
-        Article=TicketCreateArticle(
-            Subject="Ticket subject",
-            Body="Ticket body...",
-            ContentType="text/plain; charset=utf-8",
-        ),
-    )
 
 The payload consists of the ticket metadata and the article content
 
