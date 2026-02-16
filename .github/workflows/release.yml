@@ -111,13 +111,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.UV_PUBLISH_TOKEN }}
-
-      - name: Trigger Read the Docs
-        if: steps.bump.outputs.level != '' && steps.changes.outputs.changed == 'true'
-        env:
-          RTD_WEBHOOK_URL: ${{ secrets.RTD_WEBHOOK_URL }}
-        run: |
-          if [ -z "${RTD_WEBHOOK_URL}" ]; then
-            exit 0
-          fi
-          curl -sS -X POST "${RTD_WEBHOOK_URL}"
