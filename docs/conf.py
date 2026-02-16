@@ -9,7 +9,7 @@ sys.path.insert(0, str(SRC))
 
 project = "pyznuny"
 author = "Junior Rosa, Pablo Gascon"
-copyright = '2025 - Y%, Junior Rosa, Pablo Gascon'
+copyright = '2025 - %Y, Junior Rosa, Pablo Gascon'
 try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover - for older runtimes
