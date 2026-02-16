@@ -9,6 +9,8 @@ API Reference
    :members:  ticket, set_endpoint
    :show-inheritance:
 
+.. _pyznuny.TicketClient.ticket:
+
 TicketClient.ticket
 -------------------
 
@@ -19,6 +21,8 @@ The attribute ``TicketClient.ticket`` exposes the following methods.
 .. autoclass:: TicketRoutes
    :members: create, update, get
    :noindex:
+
+.. _pyznuny.TicketClient.set_endpoint:
 
 TicketClient.set_endpoint
 -------------------
