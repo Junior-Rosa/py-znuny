@@ -34,9 +34,9 @@ class TicketClient:
     :param headers: Optional custom headers
     :type headers: Mapping[str, str] | None
     """
-    #: Ticket routes handler. See :class:`~pyznuny.ticket.routes.TicketRoutes`.
+    #: Ticket routes handler. See :`TicketClient.ticket`.
     ticket: TicketRoutes
-    #: Endpoint setter helper.
+    #: Endpoint setter helper. See :`TicketClient.set_endpoint`.
     set_endpoint: EndpointSetter
     def __init__(
         self,
