@@ -9,8 +9,8 @@ API Reference
    :members:  ticket, set_endpoint
    :show-inheritance:
 
-TicketClient.ticket
--------------------
+TicketClient.ticket (:attr:`~pyznuny.TicketClient.ticket`)
+-----------------------------------------------------------
 
 The attribute ``TicketClient.ticket`` exposes the following methods.
 
