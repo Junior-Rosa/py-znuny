@@ -27,6 +27,7 @@ jobs:
     - name: Install UV
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
     - name: Install dependencies
       run: |
         uv python pin ${{ matrix.python-version }}
@@ -37,5 +38,5 @@ jobs:
         uv run ruff check . --fix
     - name: Test with pytest
       run: |
-       pytest
+        uv run pytest
   

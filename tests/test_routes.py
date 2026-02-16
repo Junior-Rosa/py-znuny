@@ -48,7 +48,8 @@ class TestTicketRoutes:
             Title="Test Ticket",
             Queue="Support",
             State="new",
-            Priority="normal"
+            Priority="normal",
+            CustomerUser="customer@example.com"
         )
         article = TicketCreateArticle(
             Subject="Test Subject",
