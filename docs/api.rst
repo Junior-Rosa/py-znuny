@@ -7,7 +7,13 @@ Documentacao da api
    :toctree: generated
    :recursive:
 
-   TicketClient
+   pyznuny.TicketClient
+
+.. currentmodule:: pyznuny
+
+.. autoclass:: TicketClient
+   :members:
+   :show-inheritance:
 
 TicketClient.ticket
 -------------------
