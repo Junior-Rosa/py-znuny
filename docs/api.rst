@@ -15,12 +15,14 @@ TicketClient.ticket
 O atributo ``TicketClient.ticket`` expõe os metodos abaixo. A classe interna que
 implementa esses metodos nao e documentada publicamente.
 
-.. automethod:: pyznuny.ticket.routes.TicketRoutes.create
+.. currentmodule:: pyznuny.ticket.routes
+
+.. automethod:: TicketRoutes.create
    :noindex:
 
-.. automethod:: pyznuny.ticket.routes.TicketRoutes.update
+.. automethod:: TicketRoutes.update
    :noindex:
 
-.. automethod:: pyznuny.ticket.routes.TicketRoutes.get
+.. automethod:: TicketRoutes.get
    :noindex:
    

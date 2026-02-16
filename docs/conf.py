@@ -52,6 +52,11 @@ autodoc_default_options = {
     "members": True,
     "show-inheritance": True,
 }
+autodoc_mock_imports = [
+    "httpx",
+    "pydantic",
+    "pydantic_core",
+]
 
 templates_path = []
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
