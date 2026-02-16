@@ -7,7 +7,7 @@ Documentacao da api
    :toctree: generated
    :recursive:
 
-   pyznuny
+   TicketClient
 
 TicketClient.ticket
 -------------------
