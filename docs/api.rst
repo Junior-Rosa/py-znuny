@@ -1,13 +1,7 @@
 API Reference
 =============
 
-Documentacao da api
-
-.. autosummary::
-   :toctree: generated
-   :recursive:
-
-   pyznuny.TicketClient
+ Api reference for pyznuny, here you can find all the classes and methods available in the library, with examples of how to use them.
 
 .. currentmodule:: pyznuny
 
@@ -18,8 +12,7 @@ Documentacao da api
 TicketClient.ticket
 -------------------
 
-O atributo ``TicketClient.ticket`` expõe os metodos abaixo. A classe interna que
-implementa esses metodos nao e documentada publicamente.
+The attribute ``TicketClient.ticket`` exposes the following methods.
 
 .. currentmodule:: pyznuny.ticket.routes
 
