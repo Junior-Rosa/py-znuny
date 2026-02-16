@@ -7,7 +7,7 @@ API Reference
 
 .. autoclass:: TicketClient
    :members:  ticket, set_endpoint
-   :show-inheritance:
+   :noindex:
 
 TicketClient.ticket
 -------------------
