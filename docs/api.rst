@@ -9,7 +9,8 @@ API Reference
    :members:  ticket, set_endpoint
    :show-inheritance:
 
-.. _pyznuny.TicketClient.ticket:
+.. py:attribute:: TicketClient.ticket
+   :noindex:
 
 TicketClient.ticket
 -------------------
@@ -22,7 +23,8 @@ The attribute ``TicketClient.ticket`` exposes the following methods.
    :members: create, update, get
    :noindex:
 
-.. _pyznuny.TicketClient.set_endpoint:
+.. py:attribute:: TicketClient.set_endpoint
+   :noindex:
 
 TicketClient.set_endpoint
 -------------------
