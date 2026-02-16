@@ -13,7 +13,6 @@ TicketClient.ticket
 -------------------
 
 The attribute ``TicketClient.ticket`` exposes the following methods.
-See :class:`~pyznuny.ticket.routes.TicketRoutes`.
 
 .. currentmodule:: pyznuny.ticket.routes
 
