@@ -35,51 +35,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          pr_info=$(python - <<'PY'
-          import json
-          import os
-          import urllib.request
-
-          repo = os.environ.get("GITHUB_REPOSITORY")
-          sha = os.environ.get("GITHUB_SHA")
-          token = os.environ.get("GITHUB_TOKEN")
-          if not repo or not sha or not token:
-              raise SystemExit
-
-          url = f"https://api.github.com/repos/{repo}/commits/{sha}/pulls"
-          req = urllib.request.Request(
-              url,
-              headers={
-                  "Accept": "application/vnd.github+json",
-                  "Authorization": f"Bearer {token}",
-              },
-          )
-          try:
-              with urllib.request.urlopen(req) as resp:
-                  data = json.load(resp)
-              if isinstance(data, list) and data:
-                  title = data[0].get("title") or ""
-                  body = data[0].get("body") or ""
-                  print(json.dumps({"title": title, "body": body}))
-          except Exception:
-              pass
-          PY
-          )
+          pr_info=$(python -c 'import json, os, urllib.request; repo=os.environ.get("GITHUB_REPOSITORY"); sha=os.environ.get("GITHUB_SHA"); token=os.environ.get("GITHUB_TOKEN");\n\
+if not repo or not sha or not token: raise SystemExit;\n\
+url=f"https://api.github.com/repos/{repo}/commits/{sha}/pulls";\n\
+req=urllib.request.Request(url, headers={"Accept":"application/vnd.github+json","Authorization":f"Bearer {token}"});\n\
+try:\n\
+  data=json.load(urllib.request.urlopen(req));\n\
+  if isinstance(data, list) and data:\n\
+    title=data[0].get("title") or ""; body=data[0].get("body") or "";\n\
+    print(json.dumps({"title": title, "body": body}))\n\
+except Exception:\n\
+  pass')
           msg=$(git log -1 --pretty=%s)
           body=""
           if [[ -n "$pr_info" ]]; then
-            msg=$(python - <<'PY' <<<"$pr_info"
-            import json, sys
-            data = json.load(sys.stdin)
-            print(data.get("title",""))
-            PY
-            )
-            body=$(python - <<'PY' <<<"$pr_info"
-            import json, sys
-            data = json.load(sys.stdin)
-            print(data.get("body",""))
-            PY
-            )
+            msg=$(python -c 'import json,sys; data=json.loads(sys.argv[1]); print(data.get("title",""))' "$pr_info")
+            body=$(python -c 'import json,sys; data=json.loads(sys.argv[1]); print(data.get("body",""))' "$pr_info")
           fi
           echo "commit_msg=$msg" >> "$GITHUB_OUTPUT"
           if [[ "$body" == *"BREAKING CHANGE"* ]]; then
