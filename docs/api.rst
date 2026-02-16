@@ -8,13 +8,19 @@ Documentacao da api
    :recursive:
 
    pyznuny
-   pyznuny.ticket.TicketClient.ticket
 
-Ticket Routes
--------------
+TicketClient.ticket
+-------------------
 
-Metodos expostos em ``TicketClient.ticket``:
+O atributo ``TicketClient.ticket`` expõe os metodos abaixo. A classe interna que
+implementa esses metodos nao e documentada publicamente.
 
-.. autoclass:: pyznuny.ticket.TicketClient.ticket
-   :members: create, update, get
+.. automethod:: pyznuny.ticket.routes.TicketRoutes.create
+   :noindex:
+
+.. automethod:: pyznuny.ticket.routes.TicketRoutes.update
+   :noindex:
+
+.. automethod:: pyznuny.ticket.routes.TicketRoutes.get
+   :noindex:
    
