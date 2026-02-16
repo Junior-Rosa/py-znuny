@@ -34,6 +34,10 @@ class TicketClient:
     :param headers: Optional custom headers
     :type headers: Mapping[str, str] | None
     """
+    #: Ticket routes handler.
+    ticket: TicketRoutes
+    #: Endpoint setter helper.
+    set_endpoint: EndpointSetter
     def __init__(
         self,
         base_url: str | None = None,
