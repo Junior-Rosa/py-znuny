@@ -7,19 +7,21 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
-project = "py-znuny"
+project = "pyznuny"
 author = "Junior Rosa, Pablo Gascon"
-
+copyright = '2025-Y%, Junior Rosa, Pablo Gascon'
 try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover - for older runtimes
     tomllib = None
 
 release = "0.0.0"
+version = release
 if tomllib is not None:
     try:
         with (ROOT / "pyproject.toml").open("rb") as handle:
             release = tomllib.load(handle)["project"]["version"]
+        version = ".".join(release.split(".")[:2])
     except (FileNotFoundError, KeyError, OSError, ValueError):
         pass
 
