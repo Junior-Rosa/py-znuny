@@ -3,7 +3,6 @@ name: Release
 on:
   push:
     branches: ["main"]
-  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -12,6 +11,8 @@ jobs:
   release:
     # if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    env:
+      RTD_WEBHOOK_URL: ${{ secrets.RTD_WEBHOOK_URL }}
 
     steps:
       - uses: actions/checkout@v4
@@ -93,6 +94,6 @@ jobs:
           password: ${{ secrets.UV_PUBLISH_TOKEN }}
 
       - name: Trigger Read the Docs
-        if: steps.bump.outputs.level != '' && steps.changes.outputs.changed == 'true' && secrets.RTD_WEBHOOK_URL != ''
+        if: steps.bump.outputs.level != '' && steps.changes.outputs.changed == 'true' && env.RTD_WEBHOOK_URL != ''
         run: |
-          curl -sS -X POST "${{ secrets.RTD_WEBHOOK_URL }}"
+          curl -sS -X POST "${{ env.RTD_WEBHOOK_URL }}"
