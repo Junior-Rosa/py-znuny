@@ -17,12 +17,7 @@ implementa esses metodos nao e documentada publicamente.
 
 .. currentmodule:: pyznuny.ticket.routes
 
-.. automethod:: TicketRoutes.create
-   :noindex:
-
-.. automethod:: TicketRoutes.update
-   :noindex:
-
-.. automethod:: TicketRoutes.get
+.. autoclass:: TicketRoutes
+   :members: create, update, get
    :noindex:
    
