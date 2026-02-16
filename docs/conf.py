@@ -10,6 +10,7 @@ sys.path.insert(0, str(SRC))
 project = "pyznuny"
 author = "Junior Rosa, Pablo Gascon"
 copyright = '2025 - %Y, Junior Rosa, Pablo Gascon'
+
 try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover - for older runtimes
@@ -17,12 +18,22 @@ except ModuleNotFoundError:  # pragma: no cover - for older runtimes
 
 release = "0.0.0"
 version = release
+
 if tomllib is not None:
     try:
         with (ROOT / "pyproject.toml").open("rb") as handle:
             release = tomllib.load(handle)["project"]["version"]
         version = ".".join(release.split(".")[:2])
     except (FileNotFoundError, KeyError, OSError, ValueError):
+        pass
+
+if release == "0.0.0":
+    try:
+        from importlib import metadata
+
+        release = metadata.version(project)
+        version = ".".join(release.split(".")[:2])
+    except Exception:
         pass
 
 extensions = [
