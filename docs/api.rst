@@ -5,13 +5,9 @@ API Reference
 
 .. currentmodule:: pyznuny
 
-.. _ticketclient:
 .. autoclass:: TicketClient
    :members:  ticket, set_endpoint
    :show-inheritance:
-
-.. _ticketclient-ticket:
-.. py:attribute:: TicketClient.ticket
 
 TicketClient.ticket
 -------------------
@@ -23,9 +19,6 @@ The attribute ``TicketClient.ticket`` exposes the following methods.
 .. autoclass:: TicketRoutes
    :members: create, update, get
    :noindex:
-
-.. _ticketclient-set-endpoint:
-.. py:attribute:: TicketClient.set_endpoint
 
 TicketClient.set_endpoint
 -------------------
