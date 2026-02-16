@@ -6,11 +6,13 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   release:
     # if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    environment: pyznuny
 
     steps:
       - uses: actions/checkout@v4
