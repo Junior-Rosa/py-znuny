@@ -18,7 +18,7 @@ features are:
 
 Here you will find all the reference documentation for the pyznuny library and a guide on how to use it
 
-To start check out the :doc:`Installation <user/install>`.
+To start check out the :doc:`Installation <user/install>`
 
 User Guide
 ----------

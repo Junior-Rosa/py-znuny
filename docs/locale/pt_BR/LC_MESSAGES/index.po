@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pyznuny 0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-27 11:37-0300\n"
+"POT-Creation-Date: 2026-02-27 20:04-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Pablo Gascón <pablogasconiel445@gmail.com>\n"
 "Language: pt_BR\n"
@@ -45,7 +45,8 @@ msgid ""
 "interacting with the znuny's Ticket API. Among its features are:"
 msgstr ""
 "pyznuny é uma biblioteca Python que visa fornecer uma interface para "
-"interagir com a API de Tickets do znuny. Entre suas funcionalidades estão:"
+"interagir com a API de Tickets do znuny. Entre suas funcionalidades "
+"estão:"
 
 #: ../../index.rst:13
 msgid "Creating and updating tickets"
@@ -76,8 +77,8 @@ msgstr ""
 "pyznuny e um guia sobre como usá-la"
 
 #: ../../index.rst:21
-msgid "To start check out the :doc:`Installation <user/install>`."
-msgstr "Para começar, confira a :doc:`Instalação <user/install>`."
+msgid "To start check out the :doc:`Installation <user/install>`"
+msgstr "Para começar, confira a :doc:`Instalação <user/install>`"
 
 #: ../../index.rst:26
 msgid ""
@@ -100,6 +101,6 @@ msgid ""
 "This section provides a guide on how to contribute to the development of "
 "pyznuny:"
 msgstr ""
-"Esta seção fornece um guia sobre como contribuir para o desenvolvimento do "
-"pyznuny:"
+"Esta seção fornece um guia sobre como contribuir para o desenvolvimento "
+"do pyznuny:"
 
