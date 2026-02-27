@@ -7,7 +7,7 @@ pyznuny
 
 Welcome to pyznuny's documentation!
 
-pyznuny is a Python library that aims to provide an interface for interacting with the pyznuny's Ticket API. Among its
+pyznuny is a Python library that aims to provide an interface for interacting with the znuny's Ticket API. Among its
 features are:
 
 - Creating and updating tickets
@@ -34,7 +34,7 @@ This section provides a guide on how to use pyznuny various features, with compl
 API Reference
 -------------
 
-This section provides the reference for every function and class in pyzuny in case you need more information about its
+This section provides the reference for every function and class in pyznuny in case you need more information about its
 usage:
 
 .. toctree::

@@ -22,7 +22,7 @@ The attribute ``TicketClient.ticket`` exposes the following methods.
    :noindex:
 
 TicketClient.set_endpoint
--------------------
+-------------------------
 
 The attribute ``TicketClient.set_endpoint`` exposes the following methods.
 

@@ -10,6 +10,10 @@ sys.path.insert(0, str(SRC))
 project = "pyznuny"
 author = "Junior Rosa, Pablo Gascon"
 copyright = '2025 - %Y, Junior Rosa, Pablo Gascon'
+language = "en"
+
+locale_dirs = ["locale/"]
+gettext_compact = False
 
 try:
     import tomllib
