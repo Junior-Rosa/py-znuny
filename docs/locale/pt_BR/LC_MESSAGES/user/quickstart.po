@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025 - 2026, Junior Rosa, Pablo Gascon
+# This file is distributed under the same license as the pyznuny package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pyznuny 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-27 11:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Pablo Gascón <pablogasconiel445@gmail.com>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../user/quickstart.rst:2
+msgid "Quick Start"
+msgstr "Início Rápido"
+
+#: ../../user/quickstart.rst:4
+msgid ""
+"On this page you will learn how to do some basic functions like creating "
+"a Ticket API client and creating some tickets through it"
+msgstr ""
+"Nesta página você aprenderá como fazer algumas funções básicas como criar "
+"um cliente da API de Tickets e criar alguns tickets através dele"
+
+#: ../../user/quickstart.rst:8
+msgid "Creating a Ticket client"
+msgstr "Criando um cliente de Ticket"
+
+#: ../../user/quickstart.rst:10
+msgid ""
+"First import the pyznuny module and create a client object, informing the"
+" base URL, username and password. It is highly recommended to use "
+"environment variables for these values, so we will be using `dotenv "
+"<https://pypi.org/project/python-dotenv/>`_ for this"
+msgstr ""
+"Primeiro importe o módulo pyznuny e crie um objeto cliente, informando a "
+"URL base, nome de usuário e senha. É altamente recomendado usar variáveis "
+"de ambiente para esses valores, então usaremos o `dotenv "
+"<https://pypi.org/project/python-dotenv/>`_ para isso"
+
+#: ../../user/quickstart.rst:25
+msgid ""
+"In this example we have the environment variables set in a .env file like"
+" this:"
+msgstr ""
+"Neste exemplo temos as variáveis de ambiente definidas em um arquivo .env "
+"assim:"
+
+#: ../../user/quickstart.rst:34
+msgid "Setting an endpoint"
+msgstr "Configurando um endpoint"
+
+#: ../../user/quickstart.rst:36
+msgid ""
+"Now that we have a client, we will create an endpoint, in our case we "
+"will do an endpoint for getting a ticket by its ID"
+msgstr ""
+"Agora que temos um cliente, vamos criar um endpoint, no nosso caso faremos "
+"um endpoint para obter um ticket pelo seu ID"
+
+#: ../../user/quickstart.rst:38
+msgid ""
+"To do this we will use the ``register_endpoint`` method, which abstracts "
+"the process of setting an endpoint for common use cases"
+msgstr ""
+"Para fazer isso usaremos o método ``register_endpoint``, que abstrai o "
+"processo de configurar um endpoint para casos de uso comuns"
+
+#: ../../user/quickstart.rst:46
+msgid ""
+"Here we created an endpoint for creating tickets, pointing to the "
+"endpoint ``your-base-url/ticket-create/``"
+msgstr ""
+"Aqui criamos um endpoint para criar tickets, apontando para o endpoint "
+"``your-base-url/ticket-create/``"
+
+#: ../../user/quickstart.rst:48
+msgid "You can now check the endpoint created in your client with:"
+msgstr "Você pode agora verificar o endpoint criado no seu cliente com:"
+
+#: ../../user/quickstart.rst:56
+msgid "Creating a Ticket"
+msgstr "Criando um Ticket"
+
+#: ../../user/quickstart.rst:58
+msgid ""
+"Now with an endpoint created for ticket creation, we can now send a "
+"ticket using the ``ticket`` attribute of the client class. This attribute"
+" has common routes to interact with the API, like the ``create()`` "
+"function, which we will be using. First we create a payload for the "
+"ticket creation"
+msgstr ""
+"Agora com um endpoint criado para criação de tickets, podemos enviar um "
+"ticket usando o atributo ``ticket`` da classe cliente. Este atributo tem "
+"rotas comuns para interagir com a API, como a função ``create()``, que "
+"usaremos. Primeiro criamos um payload para a criação do ticket"
+
+#: ../../user/quickstart.rst:81
+msgid "The payload consists of the ticket metadata and the article content"
+msgstr "O payload consiste nos metadados do ticket e no conteúdo do artigo"
+
+#: ../../user/quickstart.rst:83
+msgid "Now we just need to send the payload to the API"
+msgstr "Agora só precisamos enviar o payload para a API"
+
