@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pyznuny 0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-27 11:34-0300\n"
+"POT-Creation-Date: 2026-02-27 20:04-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Pablo Gascón <pablogasconiel445@gmail.com>\n"
 "Language: es\n"
@@ -77,8 +77,8 @@ msgstr ""
 "pyznuny y una guía sobre cómo usarla"
 
 #: ../../index.rst:21
-msgid "To start check out the :doc:`Installation <user/install>`."
-msgstr "Para comenzar, revise la :doc:`Instalación <user/install>`."
+msgid "To start check out the :doc:`Installation <user/install>`"
+msgstr "Para comenzar, revise la :doc:`Instalación <user/install>`"
 
 #: ../../index.rst:26
 msgid ""
