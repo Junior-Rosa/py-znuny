@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025 - 2026, Junior Rosa, Pablo Gascon
+# This file is distributed under the same license as the pyznuny package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pyznuny 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-27 10:56-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Pablo Gascón <pablogascon@gmail.com>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../dev/contributing.rst:2
+msgid "Contributing Guide"
+msgstr "Guia de Contribución"
+
+#: ../../dev/contributing.rst:4
+msgid ""
+"Everyone is welcome to contribute to the development of pyzuny by "
+"creating features, fixing bugs, or just refactoring the code. However we "
+"ask to follow the following guidelines when doing so"
+msgstr ""
+"Todos están invitados a contribuir al desarrollo de pyzuny creando "
+"funcionalidades, arreglando errores o simplemente refactorizando el "
+"código. Sin embargo, le pedimos que siga las siguientes guías cuando "
+"lo haga"
+
+#: ../../dev/contributing.rst:8
+msgid "Are my changes appropriate for the project?"
+msgstr ""
+"Mi cambio es apropiado para el proyecto?"
+
+#: ../../dev/contributing.rst:10
+msgid ""
+"Before starting to work on a feature or bug fix, it's a good idea to "
+"discuss it with the project maintainers. You can do this by opening an "
+"issue on the github repository or by reaching out to the maintainers "
+"directly. This will help ensure that your changes align with the "
+"project's goals and that they will be accepted."
+msgstr ""
+"Antes de comenzar a trabajar en una funcionalidad o arreglar un error, "
+"es una buena idea discutirlo con los mantenedores del proyecto. Puedes "
+"hacerlo abriendo un issue en el repositorio de github o contactando "
+"directamente a los mantenedores. Esto ayudará a asegurar que tus "
+"cambios se alineen con los objetivos del proyecto y sean aceptados."
+
+#: ../../dev/contributing.rst:15
+msgid "How to contribute to the code"
+msgstr ""
+"Como contribuir al código"
+
+#: ../../dev/contributing.rst:17
+msgid ""
+"First create a fork of the github repository, you can do that by clicking"
+" the \"Fork\" button on the top right of the repository page. Then clone "
+"said fork with:"
+msgstr ""
+"Primero cree un fork del repositorio de github, puede hacerlo haciendo "
+"clic en el botón \"Fork\" en la parte superior derecha de la página del "
+"repositorio. Luego clone dicho fork con:"
+
+#: ../../dev/contributing.rst:24
+msgid ""
+"After you do your changes in your forked codebase you can now open a pull"
+" request by clicking the button \"New pull request\" on the repository "
+"page."
+msgstr ""
+"Después de hacer tus cambios en tu base de código forkeada, ahora puedes "
+"abrir una solicitud de extracción haciendo clic en el botón \"New pull "
+"request\" en la página del repositorio."
+
+
+#: ../../dev/contributing.rst:28
+msgid "Commit Messages Guidelines"
+msgstr "Guia de Mensajes de Commit"
+
+#: ../../dev/contributing.rst:30
+msgid ""
+"We ask that you follow the `Conventional Commits "
+"<https://www.conventionalcommits.org/en/v1.0.0/>`_ guidelines when "
+"writing your commit messages. This will help us keep a consistent and "
+"clear history of changes. Remember that each commit is a specific "
+"functionality or change, avoid cramming various changes in the same "
+"commit"
+msgstr ""
+"Le pedimos que siga las `Conventional Commits "
+"<https://www.conventionalcommits.org/en/v1.0.0/>`_ guías cuando escriba "
+"sus mensajes de commit. Esto nos ayudará a mantener un historial "
+"consistente y clara de los cambios. Recuerde que cada commit es una "
+"funcionalidad o cambio específico, evite empaquetar varios cambios en "
+"el mismo commit."
+
+#: ../../dev/contributing.rst:35
+msgid "Pull Request Guidelines"
+msgstr "Guia de Pull Request"
+
+#: ../../dev/contributing.rst:37
+msgid ""
+"When creating the message of your Pull Request, give it a very clear and "
+"concise title on what is changing in the codebase and in the pull request"
+" body enter into the specifics like what are the reasons for the change "
+"and how it will affect the codebase."
+msgstr ""
+"Cuando cree el mensaje de su Pull Request, déle un título muy claro y "
+"conciso sobre lo que está cambiando en el código base y en el cuerpo "
+"del pull request ingrese en los detalles como por qué se hizo el cambio "
+"y cómo afectará el código base."
+
+#: ../../dev/contributing.rst:42
+msgid "Code Review Process"
+msgstr "Proceso de Revisión de Código"
+
+#: ../../dev/contributing.rst:44
+msgid ""
+"Now that you have made your pull request, the pyzuny contributors will go"
+" through it and review your changes, is expected that you will address "
+"any feedback or comments they may have, and do changes accordingly. Once "
+"the code review is complete and all feedback has been addressed, your "
+"pull request will be merged into the main branch if the changes are "
+"deemed appropriate."
+msgstr ""
+"Ahora que ha hecho su pull request, los contribuyentes de "
+"pyzuny revisarán sus cambios, se espera que usted "
+"atienda cualquier feedback o comentario que ellos puedan tener, y "
+"haga los cambios necesarios. Una vez que se complete la revisión del "
+"código y se hayan abordado todos los comentarios, su pull request "
+"se fusionará en la fork principal si los cambios son "
+"considerados apropiados."
+
+
