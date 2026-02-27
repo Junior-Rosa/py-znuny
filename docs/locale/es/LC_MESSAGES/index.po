@@ -40,7 +40,6 @@ msgid "Welcome to pyznuny's documentation!"
 msgstr "Bienvenido a la documentación de pyznuny!"
 
 #: ../../index.rst:10
-#, fuzzy
 msgid ""
 "pyznuny is a Python library that aims to provide an interface for "
 "interacting with the znuny's Ticket API. Among its features are:"
