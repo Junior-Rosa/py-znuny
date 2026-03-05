@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025 - 2026, Junior Rosa, Pablo Gascon
+# This file is distributed under the same license as the pyznuny package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pyznuny 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-27 11:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Pablo Gascón <pablogasconiel445@gmail.com>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../api.rst:2
+msgid "API Reference"
+msgstr "Referência da API"
+
+#: ../../api.rst:4
+msgid ""
+"Api reference for pyznuny, here you can find all the classes and methods "
+"available in the library, with examples of how to use them."
+msgstr ""
+"Referência da API para pyznuny, aqui você pode encontrar todas as classes "
+"e métodos disponíveis na biblioteca, com exemplos de como usá-los."
+
+#: of pyznuny.ticket.client.TicketClient:1
+msgid "Represents a client for interacting with the Ticket API"
+msgstr "Representa um cliente para interagir com a API de Tickets"
+
+#: ../../api.rst
+msgid "Parameters"
+msgstr "Parâmetros"
+
+#: of pyznuny.ticket.client.TicketClient:4
+msgid "Base URL for the Ticket API which the client will connect to"
+msgstr "URL base para a API de Tickets à qual o cliente se conectará"
+
+#: of pyznuny.ticket.client.TicketClient:7
+msgid "Username for authentication"
+msgstr "Nome de usuário para autenticação"
+
+#: of pyznuny.ticket.client.TicketClient:10
+msgid "Password for authentication"
+msgstr "Senha para autenticação"
+
+#: of pyznuny.ticket.client.TicketClient:13
+msgid "Optional custom endpoints registry"
+msgstr "Registro de endpoints personalizados opcional"
+
+#: of pyznuny.ticket.client.TicketClient:16
+msgid "Request timeout"
+msgstr "Tempo limite da requisição"
+
+#: of pyznuny.ticket.client.TicketClient:19
+msgid "Optional custom headers"
+msgstr "Cabeçalhos personalizados opcionais"
+
+#: of pyznuny.TicketClient.ticket:1
+msgid "Ticket routes handler. See :class:`TicketClient.ticket`."
+msgstr "Manipulador de rotas de tickets. Veja :class:`TicketClient.ticket`."
+
+#: of pyznuny.TicketClient.set_endpoint:1
+msgid "Endpoint setter helper. See :class:`TicketClient.set_endpoint`."
+msgstr "Auxiliar de configuração de endpoint. Veja :class:`TicketClient.set_endpoint`."
+
+#: ../../api.rst:13
+msgid "TicketClient.ticket"
+msgstr "TicketClient.ticket"
+
+#: ../../api.rst:15
+msgid "The attribute ``TicketClient.ticket`` exposes the following methods. ."
+msgstr "O atributo ``TicketClient.ticket`` expõe os seguintes métodos."
+
+#: of pyznuny.ticket.routes.TicketRoutes:1
+msgid ""
+"Object representing the routes for the Ticket API, this is abstracted by "
+"the TicketClient"
+msgstr ""
+"Objeto representando as rotas para a API de Tickets, isso é abstraído pelo "
+"TicketClient"
+
+#: of pyznuny.ticket.routes.TicketRoutes.create:1
+msgid "Creates a new ticket"
+msgstr "Cria um novo ticket"
+
+#: of pyznuny.ticket.routes.TicketRoutes.create:4
+msgid "Ticket creation payload"
+msgstr "Payload de criação de ticket"
+
+#: of pyznuny.ticket.routes.TicketRoutes.create:7
+msgid "Additional keyword arguments for the payload"
+msgstr "Argumentos nomeados adicionais para o payload"
+
+#: ../../api.rst
+msgid "Returns"
+msgstr "Retorna"
+
+#: of pyznuny.ticket.routes.TicketRoutes.create:9
+#: pyznuny.ticket.routes.TicketRoutes.get:13
+#: pyznuny.ticket.routes.TicketRoutes.update:9
+msgid "Response object"
+msgstr "Objeto de resposta"
+
+#: ../../api.rst
+msgid "Return type"
+msgstr "Tipo de retorno"
+
+#: of pyznuny.ticket.routes.TicketRoutes.update:1
+msgid "Updates an existing ticket"
+msgstr "Atualiza um ticket existente"
+
+#: of pyznuny.ticket.routes.TicketRoutes.update:4
+msgid "ID of the ticket to update"
+msgstr "ID do ticket a ser atualizado"
+
+#: of pyznuny.ticket.routes.TicketRoutes.update:7
+msgid "Map of the fields to update"
+msgstr "Mapa dos campos a serem atualizados"
+
+#: of pyznuny.ticket.routes.TicketRoutes.get:1
+msgid "Retrieves an existing ticket"
+msgstr "Recupera um ticket existente"
+
+#: of pyznuny.ticket.routes.TicketRoutes.get:4
+msgid "ID of the ticket to retrieve"
+msgstr "ID do ticket a ser recuperado"
+
+#: of pyznuny.ticket.routes.TicketRoutes.get:7
+msgid "Number of dynamic fields to retrieve, defaults to 0"
+msgstr "Número de campos dinâmicos a recuperar, padrão é 0"
+
+#: of pyznuny.ticket.routes.TicketRoutes.get:10
+msgid "Whether to retrieve all articles, 1 for true 0 for false, defaults to 0"
+msgstr "Se deve recuperar todos os artigos, 1 para verdadeiro 0 para falso, padrão é 0"
+
+#: ../../api.rst:25
+msgid "TicketClient.set_endpoint"
+msgstr "TicketClient.set_endpoint"
+
+#: ../../api.rst:27
+msgid "The attribute ``TicketClient.set_endpoint`` exposes the following methods."
+msgstr "O atributo ``TicketClient.set_endpoint`` expõe os seguintes métodos."
+
+#: of pyznuny.ticket.endpoints.EndpointSetter:1
+msgid "Custom endpoint setter for the Ticket API"
+msgstr "Configurador de endpoint personalizado para a API de Tickets"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter:4
+msgid "Ticket client instance"
+msgstr "Instância do cliente de tickets"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_create:1
+msgid "Sets a custom endpoint for creating tickets"
+msgstr "Define um endpoint personalizado para criar tickets"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_create:4
+msgid "Custom endpoint for creating tickets"
+msgstr "Endpoint personalizado para criar tickets"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_create:7
+msgid "HTTP method for creating tickets, defaults to POST"
+msgstr "Método HTTP para criar tickets, padrão é POST"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_create:9
+msgid "Endpoint object"
+msgstr "Objeto de endpoint"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_get:1
+msgid "Sets a custom endpoint for retrieving a ticket."
+msgstr "Define um endpoint personalizado para recuperar um ticket."
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_get:4
+#: pyznuny.ticket.endpoints.EndpointSetter.ticket_update:4
+msgid "Custom endpoint path"
+msgstr "Caminho do endpoint personalizado"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_get:7
+#: pyznuny.ticket.endpoints.EndpointSetter.ticket_update:7
+msgid "Identifier for the ticket ID in the endpoint path"
+msgstr "Identificador para o ID do ticket no caminho do endpoint"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_get:10
+msgid "HTTP method for the endpoint, defaults to GET"
+msgstr "Método HTTP para o endpoint, padrão é GET"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_get:12
+#: pyznuny.ticket.endpoints.EndpointSetter.ticket_update:12
+msgid "Registered endpoint"
+msgstr "Endpoint registrado"
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_update:1
+msgid "Sets a custom endpoint for updating a ticket."
+msgstr "Define um endpoint personalizado para atualizar um ticket."
+
+#: of pyznuny.ticket.endpoints.EndpointSetter.ticket_update:10
+msgid "HTTP method for the endpoint, defaults to POST"
+msgstr "Método HTTP para o endpoint, padrão é POST"
+
