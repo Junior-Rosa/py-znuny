@@ -39,7 +39,7 @@ To do this we will use the ``register_endpoint`` method, which abstracts the pro
 
 .. code-block:: python
 
-    endpoint = client.register_endpoint("ticket_get", "POST", "/ticket_create/")
+    endpoint = client.register_endpoint("ticket_get", "POST", "/ticket/")
 
     print(endpoint)
 
