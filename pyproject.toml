@@ -2,6 +2,7 @@
 name = "pyznuny"
 version = "0.0.17"
 description = "A Python client for interacting with the Znuny ticketing system API."
+keywords = ["znuny", "pyznuny", "itsm", "helpdesk", "ticket", "rest api", "async"]
 authors = [
     { name = "Junior Rosa", email = "jr.dasrosas@gmail.com" },
     { name = "Pablo Gascon", email = "pablogasconiel445@gmail.com" }
