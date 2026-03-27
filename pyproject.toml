@@ -1,6 +1,6 @@
 [project]
 name = "pyznuny"
-version = "1.0.0"
+version = "1.1.0"
 description = "A Python client for interacting with the Znuny ticketing system API."
 keywords = ["znuny", "pyznuny", "itsm", "helpdesk", "ticket", "rest api", "async"]
 authors = [
